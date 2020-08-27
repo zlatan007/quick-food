@@ -4,6 +4,7 @@ import Navbar2 from '../components/Navbar2';
 import Footer from '../components/Footer';
 import {signUp, logIn} from '../config/firebase';
 import Loader from 'react-loader-spinner';
+import Swal from 'sweetalert2';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../App.css'
 
@@ -18,8 +19,8 @@ export default class Login extends Component {
             userEmail: "",
             userPassword: "",
             userConfirmPassword: false,
-            userCity: "",
-            userCountry: "",
+            userAddress: "",
+            userContactno: "",
             userGender: "Male",
             userAge: "",
             userProfileImage: null,
@@ -35,13 +36,13 @@ export default class Login extends Component {
         this.handleUserEmail = this.handleUserEmail.bind(this);
         this.handleUserPassword = this.handleUserPassword.bind(this);
         this.handleUserConfirmPassword = this.handleUserConfirmPassword.bind(this);
-        this.handleUserCity = this.handleUserCity.bind(this);
-        this.handleUserCountry = this.handleUserCountry.bind(this);
-        this.handleUserAge = this.handleUserAge.bind(this);
+        this.handleUserAddress = this.handleUserAddress.bind(this);
+        this.handleUserContactno = this.handleUserContactno.bind(this);
+        // this.handleUserAge = this.handleUserAge.bind(this);
         this.handleCreateAccountBtn = this.handleCreateAccountBtn.bind(this);
         this.handleUserProfileImage = this.handleUserProfileImage.bind(this);
         this.handleUserTNC = this.handleUserTNC.bind(this);
-        this.handleUserGender = this.handleUserGender.bind(this);
+        // this.handleUserGender = this.handleUserGender.bind(this);
         this.handleLoginNowBtn = this.handleLoginNowBtn.bind(this);
     }
 
@@ -89,11 +90,11 @@ export default class Login extends Component {
             });
         }
     }
-
+    // .match(userPasswordFormate)
     handleUserPassword(e) {
         const userPassword = e;
         const userPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
-        if (userPassword.match(userPasswordFormate)) {
+        if (userPassword) {
             this.setState({
                 showError: false,
                 registerFormError: "",
@@ -125,66 +126,66 @@ export default class Login extends Component {
             });
         }
     }
-
-    handleUserCity(e) {
-        const userCity = e;
-        const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
-        if (userCity.match(userCityFormate)) {
+    // .match(userCityFormate)
+    handleUserAddress(e) {
+        const userAddress = e;
+        // const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
+        if (userAddress) {
             this.setState({
                 showError: false,
                 registerFormError: "",
-                userCity: userCity,
+                userAddress: userAddress,
             });
         } else {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid city name.",
-                userCity: "",
+                userAddress: "",
             });
         }
     }
     // .match(userCityFormate)
-    handleUserCountry(e) {
-        const userCountry = e;
+    handleUserContactno(e) {
+        const userContactno = e;
         // const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
         const userCountryFormate = /^([A-Za-z.\s_-]).{5,}$/;
-        if (userCountry) {
+        if (userContactno) {
             this.setState({
                 showError: false,
                 registerFormError: "",
-                userCountry: userCountry,
+                userContactno: userContactno,
             });
         } else {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid country name.",
-                userCountry: "",
+                userContactno: "",
             });
         }
     }
 
-    handleUserGender(e) {
-        this.setState({
-            userGender: e.target.value,
-        })
-    }
+    // handleUserGender(e) {
+    //     this.setState({
+    //         userGender: e.target.value,
+    //     })
+    // }
 
-    handleUserAge(e) {
-        const userAge = e;
-        if (userAge > 0 && userAge < 101) {
-            this.setState({
-                showError: false,
-                registerFormError: "",
-                userAge: userAge,
-            });
-        } else {
-            this.setState({
-                showError: true,
-                registerFormError: "Please enter a valid age.",
-                userAge: "",
-            });
-        }
-    }
+    // handleUserAge(e) {
+    //     const userAge = e;
+    //     if (userAge > 0 && userAge < 101) {
+    //         this.setState({
+    //             showError: false,
+    //             registerFormError: "",
+    //             userAge: userAge,
+    //         });
+    //     } else {
+    //         this.setState({
+    //             showError: true,
+    //             registerFormError: "Please enter a valid age.",
+    //             userAge: "",
+    //         });
+    //     }
+    // }
 
     handleUserProfileImage(e) {
         if (e.target.files[0] != null) {
@@ -225,7 +226,7 @@ export default class Login extends Component {
         this.setState({
             isloading:true,
         })
-        const { userName, userEmail, userPassword, userConfirmPassword, userCity, userCountry, userGender, userAge, userProfileImage, userTNC } = this.state;
+        const { userName, userEmail, userPassword, userConfirmPassword, userAddress, userContactno, userGender, userAge, userProfileImage, userTNC } = this.state;
 
         // const whiteSpaces = /^(?!\s*$)[-a-zA-Z0-9_:,.' ']{1,100}$/;
         const userNameFormate = /^([A-Za-z.\s_-]).{5,}$/;
@@ -245,7 +246,8 @@ export default class Login extends Component {
                 registerFormError: "Please enter a valid email address.",
                 userEmail: ""
             });
-        } else if (!userPassword.match(userPasswordFormate)) {
+        // .match(userPasswordFormate)
+        } else if (!userPassword) {
             this.setState({
                 showError: true,
                 registerFormError: "Use alphanumeric, uppercase, lowercase & greater than 10 characters.",
@@ -257,28 +259,30 @@ export default class Login extends Component {
                 registerFormError: "Confirmation password not matched.",
                 userConfirmPassword: false,
             });
-        } else if (!userCity.match(userCityFormate)) {
+        // .match(userCityFormate)
+        } else if (!userAddress) {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid city name.",
-                userCity: "",
+                userAddress: "",
             });
         } 
         // .match(userCountryFormate)
-        else if (!userCountry) {
+        else if (!userContactno) {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid country name.",
-                userCountry: "",
+                userContactno: "",
             });
         } 
-        else if (!(userAge > 0 && userAge < 101)) {
-            this.setState({
-                showError: true,
-                registerFormError: "Please enter a valid age.",
-                userAge: "",
-            });
-        } else if (userProfileImage == null) {
+        // else if (!(userAge > 0 && userAge < 101)) {
+        //     this.setState({
+        //         showError: true,
+        //         registerFormError: "Please enter a valid age.",
+        //         userAge: "",
+        //     });
+        // } 
+        else if (userProfileImage == null) {
             this.setState({
                 showError: true,
                 registerFormError: "Please select a profile image.",
@@ -297,8 +301,8 @@ export default class Login extends Component {
                 userName: userName,
                 userEmail: userEmail,
                 userPassword: userPassword,
-                userCity: userCity,
-                userCountry: userCountry,
+                userAddress: userAddress,
+                userContactno: userContactno,
                 userGender: userGender,
                 userAge: userAge,
                 userProfileImage: userProfileImage,
@@ -308,14 +312,25 @@ export default class Login extends Component {
             }
             try {
                 const signUpReturn = await signUp(userDetails)
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User register succesfully',
+                    type: 'success',
+                })
                 // this.setState({
                 //     isloading:false,
                 // })
                 // console.log(signUpReturn)
             }catch(error){
+
                 // this.setState({
                 //     isloading:false,
                 // })
+                Swal.fire({
+                    title: 'Error',
+                    text: error,
+                    type: 'error',
+                })
                 console.log("Error in Sign up => ",error)
             }
         }
@@ -387,17 +402,14 @@ export default class Login extends Component {
                                     </div>
                                 </div>
                                 <div className="form-row">
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor="userCity">City</label>
-                                        <input type="text" className="form-control" id="userCity" onKeyUp={(e) => this.handleUserCity(e.target.value)} />
+                                    <div className="form-group col-md-12">
+                                        <label htmlFor="useraddress">Address</label>
+                                        <input type="text" className="form-control" id="useraddress" onKeyUp={(e) => this.handleUserAddress(e.target.value)} />
                                     </div>
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor="userCountry">Country</label>
-                                        <input type="text" className="form-control" id="userCountry" onKeyUp={(e) => this.handleUserCountry(e.target.value)} />
-                                    </div>
+                                    
                                 </div>
                                 <div className="form-row">
-                                    <div className="form-group col-md-4">
+                                    {/* <div className="form-group col-md-4">
                                         <label htmlFor="userGender">Gender</label>
                                         <select id="userGender" className="form-control" value={userGender} onChange={this.handleUserGender}>
                                             <option defaultValue>Male</option>
@@ -407,6 +419,10 @@ export default class Login extends Component {
                                     <div className="form-group col-md-2">
                                         <label htmlFor="userAge">Age</label>
                                         <input type="number" className="form-control" id="userAge" onKeyUp={(e) => this.handleUserAge(e.target.value)} />
+                                    </div> */}
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="usercontactno">Contact no</label>
+                                        <input type="text" className="form-control" id="usercontactno" onKeyUp={(e) => this.handleUserContactno(e.target.value)} />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <p className="mb-2">Profile Image</p>

@@ -70,12 +70,13 @@ export default class AddMenuItems extends Component {
                 registerFormError: "Image is required."
             })
         }
-        else if (!chooseItemType) {
-            this.setState({
-                showError: true,
-                registerFormError: "Must be selected any one."
-            })
-        } else {
+        // else if (!chooseItemType) {
+        //     this.setState({
+        //         showError: true,
+        //         registerFormError: "Must be selected any one."
+        //     })
+        // }
+         else {
             this.setState({
                 showError: false,
                 registerFormError: "",
@@ -91,7 +92,8 @@ export default class AddMenuItems extends Component {
                     title: 'Success',
                     text: addItemReturn,
                     type: 'success',
-                }).then(() => {
+                })
+                .then(() => {
                     this.setState({
                         isloading:false,
                     })
@@ -128,7 +130,7 @@ export default class AddMenuItems extends Component {
                 <div className="container-fluid py-5 bg-light">
                     <div className="col-lg-6 col-md-6 col-sm-12 mx-auto bg-white shadow p-4">
                         <h2 className="text-center mb-4">Add Menu Items</h2>
-                        {this.state.isloading?(
+                        {/* {this.state.isloading?(
                                 <Loader className="text-center"
                                     type="ThreeDots"
                                     color="#00BFFF"
@@ -138,15 +140,15 @@ export default class AddMenuItems extends Component {
                         
                                 />
                             ):(
-                    
+                     */}
                         <form action="javascript:void(0)">
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="itemTitle"><b>Item Title</b></label>
+                                    <label htmlFor="itemTitle"><b>Cuisine</b></label>
                                     <input type="text" className="form-control" id="itemTitle" placeholder="Full name of dish" onChange={(e) => this.setState({ itemTitle: e.target.value })} />
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="itemIngredients"><b>Item Ingredients</b></label>
+                                    <label htmlFor="itemIngredients"><b>Food Dish</b></label>
                                     <input type="text" className="form-control" id="itemIngredients" placeholder="Item Ingredients Name" onChange={(e) => this.setState({ itemIngredients: e.target.value })} />
                                 </div>
                             </div>
@@ -163,7 +165,7 @@ export default class AddMenuItems extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <label className="mb-2"><b>Choose Item Type</b></label>
+                            {/* <label className="mb-2"><b>Choose Item Type</b></label>
                             <div className="form-row">
                                 <div className="form-group col-md-3">
                                     <div className="custom-control custom-radio">
@@ -212,16 +214,17 @@ export default class AddMenuItems extends Component {
                                 <div className="form-group col-md-3">
                                     <div className="custom-control custom-radio">
                                         <input type="radio" className="custom-control-input" id="specials" value="specials" name="chooseItemType" onChange={(e) => this.setState({ chooseItemType: e.target.value })} />
-                                        <label className="custom-control-label" htmlFor="specials">Specials</label>
-                                    </div>
-                                </div>
-                            </div>
+                                        <label className="custom-control-label" htmlFor="specials">Specials</label> */}
+                                    {/* </div>
+                                </div> */}
+                            {/* </div> */}
                             {showError ? <p className="text-danger">{registerFormError}</p> : null}
                             <button type="submit" className="btn btn-warning text-uppercase mb-3" onClick={this.handleAddYourItemBtn} >
                              <b>
                                 Add your item</b>
                                 </button>
-                        </form>)}
+                        </form>
+                        {/* )} */}
                     </div>
                 </div>
                 <Footer />

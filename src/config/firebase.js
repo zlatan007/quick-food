@@ -20,7 +20,7 @@ const db = firebase.firestore();
 
 function signUp(userDetails) {
     return new Promise((resolve, reject) => {
-        const { userName, userEmail, userPassword, userCity, userCountry, userGender, userAge, userProfileImage, isRestaurant, typeOfFood } = userDetails;
+        const { userName, userEmail, userPassword, userAddress, userContactno, userGender, userAge, userProfileImage, isRestaurant, typeOfFood } = userDetails;
         firebase.auth().createUserWithEmailAndPassword(userDetails.userEmail, userDetails.userPassword).then((success) => {
             let user = firebase.auth().currentUser;
             var uid;
@@ -35,8 +35,8 @@ function signUp(userDetails) {
                         userName: userName,
                         userEmail: userEmail,
                         userPassword: userPassword,
-                        userCity: userCity,
-                        userCountry: userCountry,
+                        userAddress: userAddress,
+                        userContactno: userContactno,
                         userGender: userGender,
                         userAge: userAge,
                         userUid: uid,

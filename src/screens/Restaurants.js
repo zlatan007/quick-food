@@ -20,7 +20,7 @@ class Restaurants extends Component {
             renderCategorizedRestaurants: false,
             renderSearchRestaurants: false,
         }
-        this.handleCategoriesCheckbox = this.handleCategoriesCheckbox.bind(this);
+        // this.handleCategoriesCheckbox = this.handleCategoriesCheckbox.bind(this);
         this.handleSearchBar = this.handleSearchBar.bind(this);
     }
 
@@ -35,46 +35,46 @@ class Restaurants extends Component {
         }
     }
 
-    handleCategoriesCheckbox(event) {
-        const { categories, } = this.state;
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        if (value) {
-            categories.push(name);
-            this.setState({
-                categories: categories,
-                renderRestaurantList: false,
-                renderCategorizedRestaurants: true,
-            })
-            if (categories.length > 0) {
-                this._renderCategorizedRestaurants()
-            } else {
-                this.setState({
-                    renderRestaurantList: true,
-                    renderCategorizedRestaurants: false,
-                })
-            }
-        } else {
-            const index = categories.indexOf(name);
-            if (index > -1) {
-                categories.splice(index, 1);
-                this.setState({
-                    categories: categories,
-                    renderRestaurantList: false,
-                    renderCategorizedRestaurants: true,
-                })
-                if (categories.length > 0) {
-                    this._renderCategorizedRestaurants()
-                } else {
-                    this.setState({
-                        renderRestaurantList: true,
-                        renderCategorizedRestaurants: false,
-                    })
-                }
-            }
-        }
-    }
+    // handleCategoriesCheckbox(event) {
+    //     const { categories, } = this.state;
+    //     const target = event.target;
+    //     const value = target.type === 'checkbox' ? target.checked : target.value;
+    //     const name = target.name;
+    //     if (value) {
+    //         categories.push(name);
+    //         this.setState({
+    //             categories: categories,
+    //             renderRestaurantList: false,
+    //             renderCategorizedRestaurants: true,
+    //         })
+    //         if (categories.length > 0) {
+    //             this._renderCategorizedRestaurants()
+    //         } else {
+    //             this.setState({
+    //                 renderRestaurantList: true,
+    //                 renderCategorizedRestaurants: false,
+    //             })
+    //         }
+    //     } else {
+    //         const index = categories.indexOf(name);
+    //         if (index > -1) {
+    //             categories.splice(index, 1);
+    //             this.setState({
+    //                 categories: categories,
+    //                 renderRestaurantList: false,
+    //                 renderCategorizedRestaurants: true,
+    //             })
+    //             if (categories.length > 0) {
+    //                 this._renderCategorizedRestaurants()
+    //             } else {
+    //                 this.setState({
+    //                     renderRestaurantList: true,
+    //                     renderCategorizedRestaurants: false,
+    //                 })
+    //             }
+    //         }
+    //     }
+    // }
 
     handleSearchBar(event) {
         const searchText = event;
@@ -121,7 +121,7 @@ class Restaurants extends Component {
                                 <img style={{ width: "70%" }} alt="Natural Healthy Food" src={restaurantList[val].userProfileImageUrl} />
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 px-0">
-                                <p>
+                                {/* <p>
                                     <small className="">
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
@@ -130,12 +130,15 @@ class Restaurants extends Component {
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
                                     </small>
                                     <small>(1) Review</small>
-                                </p>
-                                <h5 className="">{restaurantList[val].userName}</h5>
-                                 <p className=""><small>Type of Foods: <span>{restaurantList[val].typeOfFood.join(', ')}</span></small></p> 
+                                </p> */}
+                                <h5 style={{color:'#CB202D'}} className="">{restaurantList[val].userName}</h5>
+                                 <p className=""><strong><span>{restaurantList[val].userAddress}</span></strong></p>
+                                 <p className=""><strong><span>{restaurantList[val].userContactno}</span></strong></p>
+
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 py-4 px-0">
-                                <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ><FontAwesomeIcon icon="heart" className="text-success" /></span>
+                            <div className="col-lg-3 col-md-3 col-sm-12 py-2 px-0">
+                                {/* <FontAwesomeIcon icon="heart" className="text-success" />   */}
+                                {/* <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ></span> */}
                                 <button type="button" onClick={() => this.handleViewMenuBtn(restaurantList[val])} className="btn btn-warning btn-sm text-uppercase" style={{ marginBottom: '8px' }}>View Menu</button>
                             </div>
                         </div>
@@ -161,7 +164,7 @@ class Restaurants extends Component {
                                             <img style={{ width: "70%" }} alt="Natural Healthy Food" src={restaurantList[val].userProfileImageUrl} />
                                         </div>
                                         <div className="col-lg-6 col-md-6 col-sm-12 px-0">
-                                            <p>
+                                            {/* <p>
                                                 <small className="">
                                                     <FontAwesomeIcon icon="star" className="rating mr-1" />
                                                     <FontAwesomeIcon icon="star" className="rating mr-1" />
@@ -170,12 +173,14 @@ class Restaurants extends Component {
                                                     <FontAwesomeIcon icon="star" className="rating mr-1" />
                                                 </small>
                                                 <small>(1) Review</small>
-                                            </p>
-                                            <h5 className="">{restaurantList[val].userName}</h5>
-                                            <p className=""><small>Type of Foods: <span>{restaurantList[val].typeOfFood.join(', ')}</span></small></p>
+                                            </p> */}
+                                            <h5 style={{color:'#CB202D'}} className="">{restaurantList[val].userName}</h5>
+                                            <p className=""><strong><span>{restaurantList[val].userAddress}</span></strong></p>
+                                            <p className=""><strong><span>{restaurantList[val].userContactno}</span></strong></p>
                                         </div>
-                                        <div className="col-lg-3 col-md-3 col-sm-12 py-4 px-0">
-                                            <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ><FontAwesomeIcon icon="heart" className="text-success" /></span>
+                                        <div className="col-lg-3 col-md-3 col-sm-12 py-8 px-0">
+                                            {/* <FontAwesomeIcon icon="heart" className="text-success" /> */}
+                                            {/* <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ></span> */}
                                             <button type="button" onClick={() => this.handleViewMenuBtn(restaurantList[val])} className="btn btn-warning btn-sm text-uppercase" style={{ marginBottom: '8px' }}>View Menu</button>
                                         </div>
                                     </div>
@@ -199,7 +204,7 @@ class Restaurants extends Component {
                                 <img style={{ width: "70%" }} alt="Natural Healthy Food" src={searchRestaurants[val].userProfileImageUrl} />
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 px-0">
-                                <p>
+                                {/* <p>
                                     <small className="">
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
@@ -208,12 +213,13 @@ class Restaurants extends Component {
                                         <FontAwesomeIcon icon="star" className="rating mr-1" />
                                     </small>
                                     <small>(1) Review</small>
-                                </p>
-                                <h5 className="">{searchRestaurants[val].userName}</h5>
-                                <p className=""><small>Type of Foods: <span>{searchRestaurants[val].typeOfFood.join(', ')}</span></small></p>
+                                </p> */}
+                                <h5 style={{color:'#CB202D'}} className="">{searchRestaurants[val].userName}</h5>
+                                <p className=""><strong><span>{searchRestaurants[val].userAddress}</span></strong></p>
+                                <p className=""><strong><span>{searchRestaurants[val].userContactno}</span></strong></p>
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 py-4 px-0">
-                                <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ><FontAwesomeIcon icon="heart" className="text-success" /></span>
+                            <div className="col-lg-3 col-md-3 col-sm-12 py-2 px-0">
+                                {/* <span style={{ display: 'inline-block', textAlign: 'center', borderRadius: '3px', border: '1px solid #dddddd', padding: '6px 7px 0px 7px', marginRight: '16px' }} ><FontAwesomeIcon icon="heart" className="text-success" /></span> */}
                                 <button type="button" onClick={() => this.handleViewMenuBtn(searchRestaurants[val])} className="btn btn-warning btn-sm text-uppercase" style={{ marginBottom: '8px' }}>View Menu</button>
                             </div>
                         </div>
@@ -247,10 +253,10 @@ class Restaurants extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ background: "#EBEDF3" }} className="container-fluid py-5">
+                 <div style={{ background: "#EBEDF3" }} className="container-fluid py-5">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-2 col-md-2 col-sm-12">
+                         <div className="row"> 
+                           {/* <div className="col-lg-2 col-md-2 col-sm-12">
                                 <div className="listing-filter">
                                     <div className="filter-heading py-2 mb-3">
                                         <h6 className="m-0"><FontAwesomeIcon icon="utensils" className="mr-2" />Categories</h6>
@@ -260,43 +266,43 @@ class Restaurants extends Component {
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="apple-juice" name="Apple Juice" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="apple-juice">Apple Juice</label>
+                                                    <label className="custom-control-label" htmlFor="apple-juice">Chinese</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="bbq" name="BB.Q" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="bbq">BB.Q</label>
+                                                    <label className="custom-control-label" htmlFor="bbq">North Indian</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="beef-roast" name="Beef Roast" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="beef-roast">Beef Roast</label>
+                                                    <label className="custom-control-label" htmlFor="beef-roast">South Indian</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="chicken-roast" name="Chicken Roast" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="chicken-roast">Chicken Roast</label>
+                                                    <label className="custom-control-label" htmlFor="chicken-roast">Thai</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="cheese-burger" name="Cheese Burger" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="cheese-burger">Cheese Burger</label>
+                                                    <label className="custom-control-label" htmlFor="cheese-burger">Italian</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="cold-coffee" name="Cold Coffee" onChange={this.handleCategoriesCheckbox} />
-                                                    <label className="custom-control-label" htmlFor="cold-coffee">Cold Coffee</label>
+                                                    <label className="custom-control-label" htmlFor="cold-coffee">Mughlai</label>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-lg-7 col-md-7 col-sm-12">
                                 <h4 className="mb-3">Restaurant's Found</h4>
                                 <div className="container px-0">
@@ -338,7 +344,7 @@ class Restaurants extends Component {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <Footer />

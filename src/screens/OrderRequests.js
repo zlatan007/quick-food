@@ -117,6 +117,8 @@ class OrderRequests extends Component {
                             <div className="row mb-3">
                                 <div className="col-lg-6 col-md-6 col-12">
                                     <h5 className="">{orderRequest[val].userName}</h5>
+                                    <h3 className="">{orderRequest[val].userAddress}</h3>
+                                    <h3 className="">{orderRequest[val].userContactno}</h3>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12 text-lg-right text-md-right text-center ">
                                     <span className="text-uppercase text-danger order-req-status">{orderRequest[val].status}</span>
@@ -171,6 +173,8 @@ class OrderRequests extends Component {
                             <div className="row mb-3">
                                 <div className="col-lg-6 col-md-6 col-12">
                                     <h5 className="">{orderRequest[val].userName}</h5>
+                                    <h3 className="">{orderRequest[val].userAddress}</h3>
+                                    <h3 className="">{orderRequest[val].userContactno}</h3>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12 text-lg-right text-md-right text-center ">
                                     <span className="text-uppercase text-danger order-req-status">{orderRequest[val].status}</span>
@@ -221,8 +225,10 @@ class OrderRequests extends Component {
                     return (
                         <div className="container border-bottom pb-2 px-lg-0 px-md-0 mb-4" key={orderRequest[val].id}>
                             <div className="row mb-3">
-                                <div className="col-lg-6 col-md-6 col-12">
+                                <div className="col-lg-6 col-md-6 col-12 user-order-details">
                                     <h5 className="">{orderRequest[val].userName}</h5>
+                                    <h3 className="">{orderRequest[val].userAddress}</h3>
+                                    <h3 className="">{orderRequest[val].userContactno}</h3>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-12 text-lg-right text-md-right text-center ">
                                     <span className="text-uppercase text-success order-req-status">{orderRequest[val].status}</span>
@@ -239,6 +245,7 @@ class OrderRequests extends Component {
                                             </div>
                                             <div className="col-lg-7 col-md-6 col-sm-12 px-0">
                                                 <h6 className="">{orderRequest[val].itemsList[val2].itemTitle}</h6>
+                                                <h4 className="">{orderRequest[val].itemsList[val2].userAddress}</h4>
                                                 <p className="mb-1"><small>{orderRequest[val].itemsList[val2].itemIngredients}</small></p>
                                             </div>
                                             <div className="col-lg-3 col-md-3 col-sm-12 px-0 text-right">
@@ -280,8 +287,9 @@ class OrderRequests extends Component {
                                             <img className="p-2 bg-white rounded text-center" alt="Natural Healthy Food" style={{ width: "60%" }} src={userDetails.userProfileImageUrl} />
                                         </div>
                                         <div className="col-lg-10 col-md-9 col-12 pl-lg-0 pl-md-0">
-                                            <h1 className="restaurant-title">{userDetails.userName}</h1>
-                                            <p className="restaurant-text">{userDetails.typeOfFood && userDetails.typeOfFood.join(', ')}</p>
+                                            <h1   className="restaurant-title">{userDetails.userName}</h1>
+                                            <h6  className="restt">{userDetails.userAddress}</h6>
+                                            {/* <p className="restaurant-text">{userDetails.typeOfFood && userDetails.typeOfFood.join(', ')}</p> */}
                                         </div>
                                     </div> : null
                                 }

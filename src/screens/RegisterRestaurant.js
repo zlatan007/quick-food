@@ -18,8 +18,8 @@ export default class RegisterRestaurant extends Component {
             userEmail: "",
             userPassword: "",
             userConfirmPassword: false,
-            userCity: "",
-            userCountry: "",
+            userAddress: "",
+            usercontactno: "",
             userGender: "Male",
             userAge: "",
             userProfileImage: null,
@@ -33,13 +33,13 @@ export default class RegisterRestaurant extends Component {
         this.handleUserEmail = this.handleUserEmail.bind(this);
         this.handleUserPassword = this.handleUserPassword.bind(this);
         this.handleUserConfirmPassword = this.handleUserConfirmPassword.bind(this);
-        this.handleUserCity = this.handleUserCity.bind(this);
-        this.handleUserCountry = this.handleUserCountry.bind(this);
-        this.handleUserAge = this.handleUserAge.bind(this);
+        this.handleUserAddress = this.handleUserAddress.bind(this);
+        this.handleUserContactno = this.handleUserContactno.bind(this);
+        // this.handleUserAge = this.handleUserAge.bind(this);
         this.handleCreateAccountBtn = this.handleCreateAccountBtn.bind(this);
         this.handleUserProfileImage = this.handleUserProfileImage.bind(this);
         this.handleUserTNC = this.handleUserTNC.bind(this);
-        this.handleUserGender = this.handleUserGender.bind(this);
+        // this.handleUserGender = this.handleUserGender.bind(this);
     }
 
     handleUserName(e) {
@@ -77,11 +77,11 @@ export default class RegisterRestaurant extends Component {
             });
         }
     }
-
+    // .match(userPasswordFormate)
     handleUserPassword(e) {
         const userPassword = e;
         const userPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
-        if (userPassword.match(userPasswordFormate)) {
+        if (userPassword) {
             this.setState({
                 showError: false,
                 registerFormError: "",
@@ -113,65 +113,65 @@ export default class RegisterRestaurant extends Component {
             });
         }
     }
-
-    handleUserCity(e) {
-        const userCity = e;
-        const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
-        if (userCity.match(userCityFormate)) {
+    // .match(userCityFormate)
+    handleUserAddress(e) {
+        const userAddress = e;
+        // const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
+        if (userAddress) {
             this.setState({
                 showError: false,
                 registerFormError: "",
-                userCity: userCity,
+                userAddress: userAddress,
             });
         } else {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid city name.",
-                userCity: "",
+                userAddress: "",
             });
         }
     }
     // .match(userCountryFormate)
-    handleUserCountry(e) {
-        const userCountry = e;
+    handleUserContactno(e) {
+        const userContactno = e;
         const userCountryFormate = /^([A-Za-z.\s_-]).{5,}$/;
-        if (userCountry) {
+        if (userContactno) {
             this.setState({
                 showError: false,
                 registerFormError: "",
-                userCountry: userCountry,
+                userContactno: userContactno,
             });
         } else {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid country name.",
-                userCountry: "",
+                userContactno: "",
             });
         }
     }
 
-    handleUserGender(e) {
-        this.setState({
-            userGender: e.target.value,
-        })
-    }
+    // handleUserGender(e) {
+    //     this.setState({
+    //         userGender: e.target.value,
+    //     })
+    // }
 
-    handleUserAge(e) {
-        const userAge = e;
-        if (userAge > 0 && userAge < 101) {
-            this.setState({
-                showError: false,
-                registerFormError: "",
-                userAge: userAge,
-            });
-        } else {
-            this.setState({
-                showError: true,
-                registerFormError: "Please enter a valid age.",
-                userAge: "",
-            });
-        }
-    }
+    // handleUserAge(e) {
+    //     const userAge = e;
+    //     if (userAge > 0 && userAge < 101) {
+    //         this.setState({
+    //             showError: false,
+    //             registerFormError: "",
+    //             userAge: userAge,
+    //         });
+    //     } else {
+    //         this.setState({
+    //             showError: true,
+    //             registerFormError: "Please enter a valid age.",
+    //             userAge: "",
+    //         });
+    //     }
+    // }
 
     handleUserProfileImage(e) {
         if (e.target.files[0] != null) {
@@ -212,15 +212,15 @@ export default class RegisterRestaurant extends Component {
         this.setState({
             isloading:true,
         })
-
-        const { userName, userEmail, userPassword, userConfirmPassword, userCity, userCountry, userGender, userAge, userProfileImage, userTNC } = this.state;
+        // userCity,
+        const { userName, userEmail, userPassword, userConfirmPassword, userAddress, userContactno, userGender, userAge, userProfileImage, userTNC } = this.state;
 
         // const whiteSpaces = /^(?!\s*$)[-a-zA-Z0-9_:,.' ']{1,100}$/;
         const userNameFormate = /^([A-Za-z.\s_-]).{5,}$/;
         const userEmailFormate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const userPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
         // const userCountryFormate = /^([A-Za-z.\s_-]).{5,}$/;
-        const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
+        // const userCityFormate = /^([A-Za-z.\s_-]).{5,}$/;
 
         if (!userName.match(userNameFormate)) {
             this.setState({
@@ -233,7 +233,8 @@ export default class RegisterRestaurant extends Component {
                 registerFormError: "Please enter a valid email address.",
                 userEmail: ""
             });
-        } else if (!userPassword.match(userPasswordFormate)) {
+            // .match(userPasswordFormate)
+        } else if (!userPassword) {
             this.setState({
                 showError: true,
                 registerFormError: "Use alphanumeric, uppercase, lowercase & greater than 10 characters.",
@@ -245,26 +246,31 @@ export default class RegisterRestaurant extends Component {
                 registerFormError: "Confirmation password not matched.",
                 userConfirmPassword: false,
             });
-        } else if (!userCity.match(userCityFormate)) {
+        } 
+        // .match(userCityFormate)
+        else if (!userAddress) {
             this.setState({
                 showError: true,
-                registerFormError: "Please enter a valid city name.",
-                userCity: "",
+                registerFormError: "Please enter a valid address.",
+                userAddress: "",
             });
+        }
             // .match(userCountryFormate) .match(userCountryFormate)
-        } else if (!userCountry) {
+         else if (!userContactno) {
             this.setState({
                 showError: true,
                 registerFormError: "Please enter a valid country name.",
-                userCountry: "",
+                userContact: "",
             });
-        } else if (!(userAge > 0 && userAge < 101)) {
-            this.setState({
-                showError: true,
-                registerFormError: "Please enter a valid age.",
-                userAge: "",
-            });
-        } else if (userProfileImage == null) {
+        }
+        // else if (!(userAge > 0 && userAge < 101)) {
+        //     this.setState({
+        //         showError: true,
+        //         registerFormError: "Please enter a valid age.",
+        //         userAge: "",
+        //     });
+        // } 
+        else if (userProfileImage == null) {
             this.setState({
                 showError: true,
                 registerFormError: "Please select a profile image.",
@@ -278,27 +284,28 @@ export default class RegisterRestaurant extends Component {
                 registerFormError: "Please accept terms and conditions.",
             })
         } else {
-            // console.log(userName, userEmail, userPassword, userConfirmPassword, userCity, userCountry, userGender, userAge, userProfileImage, userTNC)
+             console.log(userName, userEmail, userPassword, userConfirmPassword, userAddress, userContactno, userGender, userAge, userProfileImage, userTNC)
             const userDetails = {
                 userName: userName,
                 userEmail: userEmail,
                 userPassword: userPassword,
-                userCity: userCity,
-                userCountry: userCountry,
+                userAddress: userAddress,
+                userContactno: userContactno,
                 userGender: userGender,
                 userAge: userAge,
                 userProfileImage: userProfileImage,
                 isRestaurant: true,
                 propsHistory: this.props.history,
-                typeOfFood: ['Apple Juice', 'Vegetable salad', 'Cheese Burger']
+                typeOfFood: ['Chinese', 'Vegetable salad', 'Cheese Burger']
             }
             try {
                 const signUpReturn = await signUp(userDetails)
-                // Swal.fire({
-                //     title: 'Success',
-                //     text: signUpReturn,
-                //     type: 'success',
-                // }).then(() => {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Restaurant register succesfully',
+                    type: 'success',
+                })
+                // .then(() => {
                 //     this.setState({
                 //         isloading:false,
                 //     })
@@ -311,11 +318,11 @@ export default class RegisterRestaurant extends Component {
                     isloading:false,
                 })
                 // console.log("Error in add menu items => ", error)
-                // Swal.fire({
-                //     title: 'Error',
-                //     text: error,
-                //     type: 'error',
-                // })
+                Swal.fire({
+                    title: 'Error',
+                    text: error,
+                    type: 'error',
+                })
 
                 // this.setState({
                 //     isloading:false,
@@ -343,7 +350,7 @@ export default class RegisterRestaurant extends Component {
                     <div className="col-lg-6 col-md-6 col-sm-12 mx-auto bg-white shadow p-4">
                         <h2 className="text-center mb-4">Register Restaurant</h2>
 
-                        {this.state.isloading?(
+                        {/* {this.state.isloading?(
                                 <Loader className="text-center"
                                     type="ThreeDots"
                                     color="#00BFFF"
@@ -352,7 +359,7 @@ export default class RegisterRestaurant extends Component {
                                     timeout={3000} //3 secs
                             
                                 />
-                            ):(
+                            ):( */}
 
                         <form action="javascript:void(0)">
                             <div className="form-row">
@@ -376,17 +383,18 @@ export default class RegisterRestaurant extends Component {
                                 </div>
                             </div>
                             <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="userCity">City</label>
-                                    <input type="text" className="form-control" id="userCity" onKeyUp={(e) => this.handleUserCity(e.target.value)} />
+                                <div className="form-group col-md-12">
+                                    <label htmlFor="userAddress">Address</label>
+                                    <input type="text" className="form-control" id="userAddress" onKeyUp={(e) => this.handleUserAddress(e.target.value)} />
                                 </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="userCountry">Country</label>
-                                    <input type="text" className="form-control" id="userCountry" onKeyUp={(e) => this.handleUserCountry(e.target.value)} />
-                                </div>
+                                
                             </div>
                             <div className="form-row">
-                                <div className="form-group col-md-4">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="usercontactno">Contact No.</label>
+                                    <input type="text" className="form-control" id="usercontactno" onKeyUp={(e) => this.handleUserContactno(e.target.value)} />
+                                </div>
+                                {/* <div className="form-group col-md-4">
                                     <label htmlFor="userGender">Gender</label>
                                     <select id="userGender" className="form-control" value={userGender} onChange={this.handleUserGender}>
                                         <option defaultValue>Male</option>
@@ -396,7 +404,7 @@ export default class RegisterRestaurant extends Component {
                                 <div className="form-group col-md-2">
                                     <label htmlFor="userAge">Age</label>
                                     <input type="number" className="form-control" id="userAge" onKeyUp={(e) => this.handleUserAge(e.target.value)} />
-                                </div>
+                                </div> */}
                                 <div className="form-group col-md-6">
                                     <p className="mb-2">Profile Image</p>
                                     <div className="custom-file">
@@ -413,7 +421,8 @@ export default class RegisterRestaurant extends Component {
                             </div>
                             <p className="text-danger">{showError ? registerFormError : null}</p>
                             <button type="submit" className="btn btn-warning text-uppercase mb-3" onClick={this.handleCreateAccountBtn}><b>Create an Account</b></button>
-                        </form>)}
+                        </form>
+                        {/* )} */}
                     </div>
                 </div>
                 <Footer />

@@ -207,7 +207,7 @@ class RestaurantDetails extends Component {
                     <li className="food-item border-bottom pb-2 mb-3" key={val}>
                         <div className="row">
                             <div className="col-8 pr-0">
-                                <p className="mb-0">{cartItemsList[val].itemTitle}</p>
+                                <p className="mb-0">{cartItemsList[val].itemIngredients}</p>
                             </div>
                             <div className="col-4 pl-0 text-right">
                                 <p className="mb-0"><span className="food-price">RS.{cartItemsList[val].itemPrice}</span><span onClick={() => this.removeCartItem(val)} className="remove-food-item"><FontAwesomeIcon icon="times" /></span></p>
@@ -234,8 +234,8 @@ class RestaurantDetails extends Component {
                                         <img className="p-2 bg-white rounded text-center" alt="Natural Healthy Food" style={{ width: "60%" }} src={resDetails.userProfileImageUrl} />
                                     </div>
                                     <div className="col-lg-10 col-md-9 col-12 pl-lg-0 pl-md-0">
-                                        <h1 className="restaurant-title">{resDetails.userName}</h1>
-                                        <p className="restaurant-text">{resDetails.typeOfFood.join(', ')}</p>
+                                        <h1  className="restaurant-title">{resDetails.userName}</h1>
+                                        <p className="restaurant-text">{resDetails.userContactno}</p>
                                     </div>
                                 </div>
                             </div>
@@ -246,11 +246,11 @@ class RestaurantDetails extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-2 col-md-2 col-sm-12">
-                                <div className="listing-category">
+                                {/* <div className="listing-category">
                                     <div className="category-heading py-0 mb-1">
                                         <h6 className="m-0"><FontAwesomeIcon icon="utensils" className="mr-2" />Categories</h6>
-                                    </div>
-                                    <div>
+                                    </div> */}
+                                    {/* <div>
                                         <ul className="category-list">
                                             <li>
                                                 <p>Kebabs</p>
@@ -277,8 +277,8 @@ class RestaurantDetails extends Component {
                                                 <p>Specials</p>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
+                                    </div> */}
+                                {/* </div> */}
                             </div>
                             <div className="col-lg-7 col-md-7 col-sm-12">
                                 <div className="container">
@@ -296,12 +296,12 @@ class RestaurantDetails extends Component {
                                     {tab1Content &&
                                         < div className="row menu-section">
                                             <div className="col-12 bg-white p-4">
-                                                <div className="input-group input-group-sm mb-4 mt-2">
+                                                {/* <div className="input-group input-group-sm mb-4 mt-2">
                                                     <input type="text" className="form-control search-menu-input" htmlFor="search-menu" placeholder="Search food item" />
                                                     <div className="input-group-append">
                                                         <span className="input-group-text search-menu-text" id="search-menu"><FontAwesomeIcon icon="search" /></span>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <div>
                                                     <h6 className="mb-4 text-warning">Best food items:</h6>
                                                     {this._renderMenuItemsList()}
@@ -347,7 +347,7 @@ class RestaurantDetails extends Component {
                                         <div>
                                             <div className="row ">
                                                 <div className="col-12">
-                                                    <p style={{ backgroundColor: '#f1f3f8', padding: '10px 15px' }}>Total+ <span style={{ float: 'right', color: '#2f313a', fontSize: '14px', fontWeight: 700 }}><em>RS.{totalPrice}</em></span></p>
+                                                    <p style={{ backgroundColor: '#f1f3f8', padding: '10px 15px' }}><strong>Total</strong> <span style={{ float: 'right', color: '#2f313a', fontSize: '14px', fontWeight: 700 }}><em>RS.{totalPrice}</em></span></p>
                                                 </div>
                                             </div>
                                         </div>
